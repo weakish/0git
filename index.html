@@ -166,6 +166,9 @@ class ZeroGit extends ZeroFrame
                 this.log(repos[i].title)
                 this.add_repo(repos[i].title, repos[i].description, repos[i].url, repos[i].repo_url, repos[i].cert_user_id)
             }
+            // Prevent last row expansion.
+            this.repos.innerHTML += '<li class="chew-cell chew-cell--ghost"></li>'
+
         })
     }
 
