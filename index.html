@@ -93,7 +93,7 @@ class ZeroGit extends ZeroFrame
     add_repo(title, description, url, repo_url, user)
     {
         let entry = '<li class="repo chew-cell _"><div class="chew-card _b1">' +
-                    `<h2 class="_text-center"><a href="${_make_link_relative(encodeURI(url))}">${_escape_html(title)}</a></h2>` +
+                    `<h2 class="_text-center"><a href="${encodeURI(_make_link_relative(url))}">${_escape_html(title)}</a></h2>` +
                     `<p class="_plxs">${_escape_html(description)}</p>` +
                     `<p class="_plxs"><code>git clone ${_escape_html(repo_url)}</code></p>` +
                     `<address rel="author" class="_c-gray-lighter _plxs">posted by ${user}</address><p></div></li>`
