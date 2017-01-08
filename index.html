@@ -142,7 +142,7 @@ class ZeroGit extends ZeroFrame
             })
 
             // Encode data array to utf8 json text
-            let json_raw = decodeURI(encodeURI(JSON.stringify(data, undefined, '\t')))
+            let json_raw = unescape(encodeURIComponent(JSON.stringify(data, undefined, '\t')))
 
             // Write file to disk
             this.cmd("fileWrite", [inner_path, btoa(json_raw)], (response) => {
