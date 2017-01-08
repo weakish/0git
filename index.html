@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>0git - a list of git repositories on ZeroNet</title>
+    <title>0git - git repositories hosted on ZeroNet</title>
 
     <!-- concisecss -->
     <link rel="stylesheet" href="css/concise/concise.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="page_header" class="_text-center _pts _mbm">
-    <h1>0git - a list of git repositories on ZeroNet</h1>
+    <h1>0git - git repositories hosted on ZeroNet</h1>
 </div>
 <div id="composite_button" grid style="display: block">
     <button column="2 +9" class="-success" onClick="return show_composite_form()">Post new repository</button>
@@ -22,8 +22,14 @@
         <input column="6" type="text" id="description" placeholder="brief description (plain text, no markup)" required>
     </div>
     <div grid>
-        <input column="4" type="url" id="url" placeholder="project site" required>
-        <input column="4" type="url" id="repo_url" placeholder="repository clone url" required>
+        <input column="4" type="url" id="url" placeholder="project site"
+               required
+               pattern="(http://(127.0.0.1|localhost):43110)?/([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+)|([A-Za-z-]+)(/\.*)?"
+               title="ZeroNet url only.">
+        <input column="4" type="url" id="repo_url" placeholder="repository clone url"
+               required
+               pattern="(http://(127.0.0.1|localhost):43110)?/([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+)|([A-Za-z-]+)(/\.*)?"
+               title="ZeroNet url only.">
     </div>
     <div grid class="_mtxs _mbxs">
         <span column="3 +5" class="_c-gray-lighter">posted as
@@ -70,9 +76,14 @@ function _escape_html(text)
 
 function _make_link_relative(url) {
     const zeronet_link_prefix = 'http://127.0.0.1:43110'
+    const alternative_zeronet_link_prefix = 'http://localhost:43110'
     if (url.startsWith(zeronet_link_prefix))
     {
         return url.slice(zeronet_link_prefix.length)
+    }
+    else if (url.startsWith(alternative_zeronet_link_prefix))
+    {
+        return url.slice(alternative_zeronet_link_prefix.length)
     }
     else
     {
